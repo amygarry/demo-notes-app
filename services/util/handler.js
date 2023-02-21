@@ -1,7 +1,7 @@
 
 // We are creating a handler function that we’ll use as a wrapper around our Lambda functions.
 // It takes our Lambda function as the argument.
-export default function handler (lamda){
+export default function handler (lambda){
     return async function (event, context){
         let body, statusCode;
 
