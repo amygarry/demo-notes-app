@@ -18,7 +18,7 @@ export function ApiStack({ stack, app }) {
       "POST /notes": "functions/create.main", 
       "GET /notes/{id}": "functions/get.main",
       "GET /notes": "functions/list.main", 
-      "GET /notes/{id}": "functions/get.main"
+      "PUT /notes/{id}": "functions/update.main"
     },
   });
 
