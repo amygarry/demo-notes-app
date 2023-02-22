@@ -22,7 +22,7 @@ export function ApiStack({ stack, app }) {
       "GET /notes": "functions/list.main", 
       "PUT /notes/{id}": "functions/update.main",
       "DELETE /notes/{id}": "functions/delete.main",
-      "POST /billing": "functions/billing.main"
+      "POST /billing": "functions/billings.main"
     },
   });
 
