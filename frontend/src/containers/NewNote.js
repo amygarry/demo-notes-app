@@ -6,6 +6,8 @@ import { onError } from "../lib/errorLib";
 import config from "../config";
 import "./NewNote.css";
 import {API} from "aws-amplify"
+import { s3Upload } from "../lib/awsLib";
+
 
 export default function NewNote() {
   const file = useRef(null);
@@ -23,7 +25,7 @@ export default function NewNote() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-
+  
     if (file.current && file.current.size > config.MAX_ATTACHMENT_SIZE) {
       alert(
         `Please pick a file smaller than ${
@@ -32,22 +34,22 @@ export default function NewNote() {
       );
       return;
     }
-
+  
     setIsLoading(true);
-
-    try{
-        await createNote({content});
-        nav("/");
-    } catch (e){
-        onError(e);
-        setIsLoading(false)
+  
+    try {
+      await createNote({ content });
+      nav("/");
+    } catch (e) {
+      onError(e);
+      setIsLoading(false);
     }
   }
-
-  function createNote(note){
+  
+  function createNote(note) {
     return API.post("notes", "/notes", {
-        body: note
-    })
+      body: note,
+    });
   }
 
   return (
