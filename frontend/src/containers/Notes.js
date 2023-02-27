@@ -1,6 +1,6 @@
 import React, {useRef, useState, useEffect} from "react"
 import {useParams, useNavigate} from "react-router-dom"
-import { Api, loadingContainer } from "aws-amplify"
+import { API, loadingContainer } from "aws-amplify"
 import { onError } from "../lib/errorLib"
 
 export default function Notes(){
@@ -11,6 +11,28 @@ export default function Notes(){
     const [content, setContent]= useState("")
 
     useEffect(()=>{
-        function lo
-    })
+        function loadNote(){
+            return API.get("notes", `/notes/${id}`)
+        }
+
+    async function onLoad(){
+        try{
+            const note = await loadNote();
+            const {content, attachment}=note
+            
+            if (attachment){
+                note.attachmentURL = await Storage.vault.get(attachment)
+            }
+
+            setContent(content);
+            setNote(note);
+        }catch (e){
+            onError(e)
+        }
+    }
+
+    onLoad();
+    }, [id])
+
+    return <div className="Notes"></div>
 }

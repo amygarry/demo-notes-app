@@ -15,7 +15,7 @@ export default function Links (){
             <Route path="/login" element={<Login/>}/>
             <Route path="/signup" element={<Signup />} />
             <Route path="/notes/new" element={<NewNote />} />
-            <Route path="/notes/:id" element={<Notes/>}
+            <Route path="/notes/:id" element={<Notes/>}/>
         </Routes>
     )
 }
