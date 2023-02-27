@@ -4,6 +4,7 @@ import dynamoDb from "../util/dynamodb";
 
 export const main = handler(async (event) => {
   const data = JSON.parse(event.body);
+  console.log(`data:${JSON.stringify(data)}`);
   const params = {
     TableName: process.env.TABLE_NAME,
     Item: {
@@ -15,8 +16,9 @@ export const main = handler(async (event) => {
       createdAt: Date.now(), // Current Unix timestamp
     },
   };
-
+  console.log(`params:${JSON.stringify(params)}`);
   await dynamoDb.put(params);
 
+  console.log('you made it here:', JSON.stringify(params))
   return params.Item;
 })
